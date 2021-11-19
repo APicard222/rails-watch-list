@@ -16,9 +16,8 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     @list.save
-
     # no need for app/views/lists/create.html.erb
-    redirect_to list_path(@list)
+    redirect_to root_path
   end
 
   private
