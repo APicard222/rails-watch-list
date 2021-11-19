@@ -1,10 +1,27 @@
-<h1><%= @list.name %> list:</h1>
-<ul>
-<% @bookmarks.each do |book| %>
-<li><%= book.movie.title%> // <%= book.comment %> // <%= link_to "🗑️",  bookmark_path(book),
-method: :delete, data: { confirm: "Sure?" } %></li>
-<%end%>
-</ul>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand"><%= @list.name %> list:</a>
+    <form class="d-flex align">
+      <button class="btn btn-light" style="width: 300px" type="submit"><%= link_to "New Bookmark", new_list_bookmark_path(@list) %></button>
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
 
-<p><%= link_to "New Bookmark", new_list_bookmark_path(@list) %></p>
+<div class="container">
+  <div class="cards">
+    <% @bookmarks.each do |book| %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+        <p><%= book.movie.title%><br>
+        <%= book.comment %><br>
+        <%= link_to "🗑️",  bookmark_path(book),
+          method: :delete, data: { confirm: "Sure?" } %></p>
+      </div>
+    <%end%>
+  </div>
+</div>
+
+<div class="btn btn-light">
 <p><%= link_to "Back to selection", lists_path %></p>
+</div>
